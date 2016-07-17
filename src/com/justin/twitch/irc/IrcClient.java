@@ -2,9 +2,6 @@ package com.justin.twitch.irc;
 
 
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
@@ -16,10 +13,7 @@ public class IrcClient {
 	
 	private Socket socket;
 	private PrintWriter writer;
-	private BufferedReader reader;
-	private OutputStream outputStream;
 	private Scanner scanner;
-	private InputStream inputStream;
 	private String address = "irc.chat.twitch.tv";
 	private int port = 6667;
 	private String userName= "k_m_g_bot";
@@ -43,7 +37,7 @@ public class IrcClient {
 	
 	private void sendIrcMessage(String message) {
 		writer.println(message);
-		System.out.println(message);
+		//System.out.println(message);
 		
 	}
 	
@@ -67,7 +61,7 @@ public class IrcClient {
 	public String readChat(String message){
 		String[] temp = message.split(" :");
 		if(temp.length == 2){
-			//System.out.println(temp[1]);
+			System.out.println(temp[1]);
 			return  temp[1].trim();
 		}
 		return "";
@@ -76,10 +70,22 @@ public class IrcClient {
 	public String getUserNameFromChat(String message){
 		String[] temp = message.split("!");
 		StringBuilder name = new StringBuilder(temp[0]);
-		name.deleteCharAt(0);
-		String sender = name.toString();
-		System.out.println(sender);
-		return sender;
+		//System.out.println(name.toString());
+		if(name.length()==0){
+			return null;
+			}
+		if(name.toString().charAt(0)==':'){
+			name.deleteCharAt(0);
+			String sender = name.toString();
+			//System.out.println(sender);
+			return sender;
+		}else{
+			return null;
+		}
+		
+		
+		
+		
 	}
 
 }

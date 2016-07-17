@@ -8,6 +8,7 @@ public class Lookups implements Runnable {
 	
 	private IrcClient irc;
 	private Window window;
+	private int sleepTime = 30000;
 	 public Lookups(IrcClient irc, Window windows) {
 		this.irc = irc;
 		this.window = windows;
@@ -22,22 +23,19 @@ public class Lookups implements Runnable {
 			long checkedChatters = twitchChat.getChatterCount();
 			window.ChatLogSetText(Long.toString(chatters));
 			if(checkedChatters >chatters){
-				
 				chatters = checkedChatters;
 				try {
-					Thread.sleep(10000);
+					Thread.sleep(sleepTime);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 			if(checkedChatters < chatters){
-				irc.sendChatMessage("Bye");
 				chatters = checkedChatters;
 				try {
-					Thread.sleep(10000);
+					Thread.sleep(sleepTime);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -16,7 +16,7 @@ public class Main {
 		Lookups lookups = new Lookups(irc,window);
 		Thread thread = new Thread(lookups);
 		thread.setName("ChatCountLoger");
-		clip.setVolume(6f);
+		clip.setVolume(1.0f);
 		thread.start();
 		
 		irc.joinChannel();
@@ -24,8 +24,13 @@ public class Main {
 		while(true){
 			String defaltMessage = irc.readMessage();
 			String message = irc.readChat(defaltMessage);
+			String user ="";
+			if(irc.getUserNameFromChat(defaltMessage)!=null){
+				user = irc.getUserNameFromChat(defaltMessage);
+			}
+			
 			if(message.compareTo("!hello")==0){
-				irc.sendChatMessage("hey");
+				irc.sendChatMessage("hey "+user);
 			}
 			if(message.compareTo("hello")==0){
 				if(clip.isRunning())break;
