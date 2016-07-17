@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.justin.main.IrcClient;
+import com.justin.twitch.irc.IrcClient;
 
 public class chatlog {
 

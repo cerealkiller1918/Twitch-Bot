@@ -1,4 +1,4 @@
-package com.justin.main;
+package com.justin.twitch.irc;
 
 
 
@@ -59,7 +59,7 @@ public class IrcClient {
 		String message= "";
 		if(scanner.hasNext()){
 			message = scanner.nextLine();
-			System.out.println(message);
+			//System.out.println(message);
 		}
 		return message;
 	}

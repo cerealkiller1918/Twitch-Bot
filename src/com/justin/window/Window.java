@@ -1,4 +1,4 @@
-package com.justin.main;
+package com.justin.window;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -46,5 +46,8 @@ public class Window {
 	
 	public void updateChatLog(String log){
 		textArea.append(log);
+	}
+	public void ChatLogSetText(String log){
+		textArea.setText(log);
 	}
 }

@@ -1,4 +1,4 @@
-package com.justin.main;
+package com.justin.twitch.irc;
 
 public class ChatCommand {
 	

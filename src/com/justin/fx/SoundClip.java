@@ -1,4 +1,4 @@
-package com.justin.main;
+package com.justin.fx;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
