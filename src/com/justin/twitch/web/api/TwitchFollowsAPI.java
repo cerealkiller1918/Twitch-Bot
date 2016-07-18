@@ -1,4 +1,4 @@
-package com.justin.twitch.follows;
+package com.justin.twitch.web.api;
 
 import java.util.ArrayList;
 
@@ -6,12 +6,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.justin.json.JSON;
+import com.justin.webInterface.WebInterface;
 
 public class TwitchFollowsAPI {
 
 	private String url = "https://api.twitch.tv/kraken/channels/cerealkiller1918/follows";
-	private JSON web = new JSON();
+	private WebInterface web = new WebInterface();
 
 	public String[] listOfFollows() {
 		try {
@@ -21,7 +21,8 @@ public class TwitchFollowsAPI {
 			JSONArray jsonFollows = (JSONArray) jsonObject1.get("follows");
 			for (int i = 0; i < jsonFollows.size(); i++) {
 				JSONObject object = (JSONObject) jsonFollows.get(i);
-				strings.add((String) object.get("display_name"));
+				JSONObject object2 = (JSONObject) object.get("user");
+				strings.add((String) object2.get("display_name"));
 			}
 			String[] temp = new String[strings.size()];
 			temp = strings.toArray(temp);

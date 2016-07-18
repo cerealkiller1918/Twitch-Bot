@@ -1,8 +1,8 @@
 package com.justin.main;
 
 import com.justin.fx.SoundClip;
-import com.justin.twitch.chat.TwitchChatAPI;
 import com.justin.twitch.irc.IrcClient;
+import com.justin.twitch.web.api.TwitchChatAPI;
 import com.justin.window.Window;
 
 public class Lookups implements Runnable {

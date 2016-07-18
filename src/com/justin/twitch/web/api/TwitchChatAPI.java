@@ -1,4 +1,4 @@
-package com.justin.twitch.chat;
+package com.justin.twitch.web.api;
 
 import java.util.ArrayList;
 
@@ -6,11 +6,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.justin.json.JSON;
+import com.justin.webInterface.WebInterface;
 
 public class TwitchChatAPI {
 
-	private JSON web = new JSON();
+	private WebInterface web = new WebInterface();
 	private String url = "https://tmi.twitch.tv/group/user/cerealkiller1918/chatters";
 
 	public Long getChatterCount() {
