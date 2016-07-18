@@ -6,7 +6,7 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 public class JSON {
-	public String  getJSON(String https) throws Exception{
+	public String  getHTTPS(String https) throws Exception{
 		String urlResult = "";
 		URL url = new URL(https);
 		HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
@@ -19,5 +19,7 @@ public class JSON {
 		rd.close();
 		return urlResult;
 	}
+	
+	
 
 }

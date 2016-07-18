@@ -1,6 +1,7 @@
 package com.justin.main;
 
 import com.justin.fx.SoundClip;
+import com.justin.twitch.chat.TwitchChatAPI;
 import com.justin.twitch.irc.IrcClient;
 import com.justin.window.Window;
 
@@ -9,6 +10,8 @@ public class Main {
 	private static IrcClient irc = new IrcClient(true);
 	
 	public static void main(String[] args){
+		
+		TwitchChatAPI chatAPI = new TwitchChatAPI();
 		
 		SoundClip clip = new SoundClip("/r2d2.wav");
 		//String ChatterUrl ="https://tmi.twitch.tv/group/user/cerealkiller1918/chatters";
@@ -35,6 +38,17 @@ public class Main {
 			if(message.compareTo("!play")==0){
 				if(clip.isRunning())break;
 				clip.play();
+			}
+			if(message.compareTo("!test")==0){
+				String[] list = chatAPI.getAllChatters();
+				if(list==null)System.out.println("Did not work");
+				if(list!=null){
+					window.ChatLogSetText("");
+					for(int i =0; i < list.length; i++){
+						window.updateChatLog(list[i]+'\n');
+					}
+					
+				}
 			}
 			
 		}
