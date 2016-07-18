@@ -7,7 +7,7 @@ import com.justin.window.Window;
 
 public class Main {
 
-	private static IrcClient irc = new IrcClient(true);
+	private static IrcClient irc = new IrcClient();
 	
 	public static void main(String[] args){
 		
@@ -22,9 +22,11 @@ public class Main {
 		clip.setVolume(1.0f);
 		thread.start();
 		
-		irc.joinChannel();
-		
 		while(true){
+			if(!irc.isConnected()){
+				irc.closeConnection();
+				irc.restartConnection();
+			}
 			String defaltMessage = irc.readMessage();
 			String message = irc.readChat(defaltMessage);
 			String user ="";

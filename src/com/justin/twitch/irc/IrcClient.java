@@ -15,29 +15,32 @@ public class IrcClient {
 	private String oAuth = "oauth:bzuchfpauv15sjl0sy172xokrsovx9";
 	private String channel = "cerealkiller1918";
 
-	public IrcClient(boolean start) {
-		if (start) {
-			try {
-				socket = new Socket(address, port);
-				writer = new PrintWriter(socket.getOutputStream(), true);
-				scanner = new Scanner(socket.getInputStream());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			writer.println("PASS " + oAuth);
-			writer.println("NICK " + userName);
-			;
-			writer.println("USER " + userName + " 8 * :" + userName);
+	public IrcClient() {
+
+		try {
+			socket = new Socket(address, port);
+			writer = new PrintWriter(socket.getOutputStream(), true);
+			scanner = new Scanner(socket.getInputStream());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		startMessage();
+		joinChannel();
+
+	}
+
+	private void startMessage() {
+		writer.println("PASS " + oAuth);
+		writer.println("NICK " + userName);
+		writer.println("USER " + userName + " 8 * :" + userName);
 	}
 
 	private void sendIrcMessage(String message) {
 		writer.println(message);
 	}
 
-	public void joinChannel() {
+	private void joinChannel() {
 		sendIrcMessage("JOIN #" + channel);
-		;
 	}
 
 	public void sendChatMessage(String message) {
@@ -75,4 +78,33 @@ public class IrcClient {
 			return null;
 		}
 	}
+
+	public boolean isConnected() {
+		return socket.isConnected();
+	}
+
+	public void closeConnection() {
+		try {
+			scanner.close();
+			writer.flush();
+			writer.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void restartConnection() {
+
+		try {
+			socket = new Socket(address, port);
+			writer = new PrintWriter(socket.getOutputStream(), true);
+			scanner = new Scanner(socket.getInputStream());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		startMessage();
+		joinChannel();
+	}
+
 }
