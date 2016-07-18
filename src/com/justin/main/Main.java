@@ -32,7 +32,7 @@ public class Main {
 			if(message.compareTo("!hello")==0){
 				irc.sendChatMessage("hey "+user);
 			}
-			if(message.compareTo("hello")==0){
+			if(message.compareTo("!play")==0){
 				if(clip.isRunning())break;
 				clip.play();
 			}
