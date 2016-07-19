@@ -10,11 +10,11 @@ import com.justin.webInterface.WebInterface;
 
 public class TwitchChatAPI {
 
-	private WebInterface web = new WebInterface();
 	private String url = "https://tmi.twitch.tv/group/user/cerealkiller1918/chatters";
 
 	public Long getChatterCount() {
 		try {
+			WebInterface web = new WebInterface();
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(web.getHTTPS(url));
 			JSONObject jsonObject = (JSONObject) obj;
@@ -28,6 +28,7 @@ public class TwitchChatAPI {
 
 	public String[] getViewsList() {
 		try {
+			WebInterface web = new WebInterface();
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTPS(url));
 			JSONObject inter = (JSONObject) jsonObject.get("chatters");
@@ -45,6 +46,7 @@ public class TwitchChatAPI {
 
 	public String[] getModeratorsList() {
 		try {
+			WebInterface web = new WebInterface();
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTPS(url));
 			JSONObject inter = (JSONObject) jsonObject.get("chatters");
@@ -62,6 +64,7 @@ public class TwitchChatAPI {
 
 	public String[] getAllChatters() {
 		try {
+			WebInterface web = new WebInterface();
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTPS(url));
 			JSONObject inter = (JSONObject) jsonObject.get("chatters");

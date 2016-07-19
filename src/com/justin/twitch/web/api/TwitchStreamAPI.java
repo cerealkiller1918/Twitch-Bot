@@ -7,12 +7,12 @@ import com.justin.webInterface.WebInterface;
 
 public class TwitchStreamAPI {
 
-	private String url = "https://api.twitch.tv/kraken/streams/cerealkiller1918";
+	//private String url = "https://api.twitch.tv/kraken/streams/cerealkiller1918";
 	private String testUrl = "http://192.168.1.5:9092/test.json";
-	private WebInterface web = new WebInterface();
 
 	public boolean isStreamOnline() {
 		try{
+			WebInterface web = new WebInterface();
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
 			if(jsonObject.get("stream")!= null){
@@ -30,6 +30,7 @@ public class TwitchStreamAPI {
 	public String getGame(){
 		if(!isStreamOnline()) return null;
 		try{
+			WebInterface web = new WebInterface();
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
 			JSONObject streamObject = (JSONObject) jsonObject.get("stream");
@@ -43,6 +44,7 @@ public class TwitchStreamAPI {
 	public long getVideoSize(){
 		if(!isStreamOnline()) return -1;
 		try{
+			WebInterface web = new WebInterface();
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
 			JSONObject streamObject = (JSONObject) jsonObject.get("stream");
@@ -56,6 +58,7 @@ public class TwitchStreamAPI {
 	public long getDelay(){
 		if(!isStreamOnline()) return -1;
 		try{
+			WebInterface web = new WebInterface();
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
 			JSONObject streamObject = (JSONObject) jsonObject.get("stream");
@@ -69,6 +72,7 @@ public class TwitchStreamAPI {
 	public long getViewers(){
 		if(!isStreamOnline()) return -1;
 		try{
+			WebInterface web = new WebInterface();
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
 			JSONObject streamObject = (JSONObject) jsonObject.get("stream");

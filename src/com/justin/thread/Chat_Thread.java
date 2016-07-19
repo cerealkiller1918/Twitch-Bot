@@ -15,7 +15,7 @@ public class Chat_Thread implements Runnable {
 
 	@Override
 	public void run() {
-
+		try{
 		while (true) {
 			if (!irc.isConnected()) {
 				irc.closeConnection();
@@ -32,7 +32,10 @@ public class Chat_Thread implements Runnable {
 				irc.sendChatMessage("hey " + user);
 			}
 		}
-
+		}catch(Exception e){
+			e.printStackTrace();
+			System.exit(-1);
+		}
 	}
 
 }

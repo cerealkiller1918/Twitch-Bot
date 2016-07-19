@@ -11,10 +11,10 @@ import com.justin.webInterface.WebInterface;
 public class TwitchFollowsAPI {
 
 	private String url = "https://api.twitch.tv/kraken/channels/cerealkiller1918/follows";
-	private WebInterface web = new WebInterface();
 
 	public String[] listOfFollows() {
 		try {
+			WebInterface web = new WebInterface();
 			ArrayList<String> strings = new ArrayList<String>();
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject1 = (JSONObject) parser.parse(web.getHTTPS(url));
