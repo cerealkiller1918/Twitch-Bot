@@ -14,7 +14,7 @@ public class TwitchStreamAPI {
 	public boolean isStreamOnline() {
 		try{
 			JSONParser parser = new JSONParser();
-			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTPS(url));
+			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
 			if(jsonObject.get("stream")!= null){
 				return true;
 			
@@ -26,5 +26,58 @@ public class TwitchStreamAPI {
 			return false;
 		}
 	}
+	
+	public String getGame(){
+		if(!isStreamOnline()) return null;
+		try{
+			JSONParser parser = new JSONParser();
+			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
+			JSONObject streamObject = (JSONObject) jsonObject.get("stream");
+			return (String) streamObject.get("game");
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public long getVideoSize(){
+		if(!isStreamOnline()) return -1;
+		try{
+			JSONParser parser = new JSONParser();
+			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
+			JSONObject streamObject = (JSONObject) jsonObject.get("stream");
+			return (long) streamObject.get("video_height");
+		}catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	public long getDelay(){
+		if(!isStreamOnline()) return -1;
+		try{
+			JSONParser parser = new JSONParser();
+			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
+			JSONObject streamObject = (JSONObject) jsonObject.get("stream");
+			return (long) streamObject.get("delay");
+		}catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	public long getViewers(){
+		if(!isStreamOnline()) return -1;
+		try{
+			JSONParser parser = new JSONParser();
+			JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
+			JSONObject streamObject = (JSONObject) jsonObject.get("stream");
+			return (long) streamObject.get("viewers");
+		}catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
 
 }

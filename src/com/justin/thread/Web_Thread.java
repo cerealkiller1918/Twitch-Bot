@@ -1,19 +1,17 @@
-package com.justin.main;
+package com.justin.thread;
 
 import com.justin.fx.SoundClip;
-import com.justin.twitch.irc.IrcClient;
 import com.justin.twitch.web.api.TwitchChatAPI;
 import com.justin.window.Window;
 
-public class Lookups implements Runnable {
+public class Web_Thread implements Runnable {
 
-	private IrcClient irc;
 	private Window window;
 	private int sleepTime = 30000;
 	private SoundClip clip = new SoundClip("/r2d2.wav");
 
-	public Lookups(IrcClient irc, Window windows) {
-		this.irc = irc;
+	public Web_Thread(Window windows) {
+		
 		this.window = windows;
 	}
 

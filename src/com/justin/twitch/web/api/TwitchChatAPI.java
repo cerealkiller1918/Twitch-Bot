@@ -14,8 +14,8 @@ public class TwitchChatAPI {
 	private String url = "https://tmi.twitch.tv/group/user/cerealkiller1918/chatters";
 
 	public Long getChatterCount() {
-		JSONParser parser = new JSONParser();
 		try {
+			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(web.getHTTPS(url));
 			JSONObject jsonObject = (JSONObject) obj;
 			return (long) jsonObject.get("chatter_count");
