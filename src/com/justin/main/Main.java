@@ -7,14 +7,15 @@ import com.justin.window.Window;
 public class Main {
 
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		Window window = new Window();
 
 		Thread chatThread = new Thread(new Chat_Thread());
 		chatThread.setName("Chat");
-		Thread webThread = new Thread(new Web_Thread(window));
-		webThread.setName("Web");
+		//Thread webThread = new Thread(new Web_Thread(window));
+		//webThread.setName("Web");
 		chatThread.start();
-		webThread.start();
+		//webThread.start();
 
 	}
 

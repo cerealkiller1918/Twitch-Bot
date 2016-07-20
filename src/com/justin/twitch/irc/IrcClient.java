@@ -4,20 +4,30 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class IrcClient {
+import com.justin.fx.SoundClip;
 
+public class IrcClient {
+	private SoundClip ping;
 	private Socket socket;
 	private PrintWriter writer;
 	private Scanner scanner;
-	private String address = "irc.chat.twitch.tv";
+
 	private int port = 6667;
-	private String userName = "k_m_g_bot";
-	private String oAuth = "oauth:bzuchfpauv15sjl0sy172xokrsovx9";
-	private String channel = "cerealkiller1918";
+	// private String address = "irc.chat.twitch.tv";
+	// private String userName = "k_m_g_bot";
+	// private String oAuth = "oauth:bzuchfpauv15sjl0sy172xokrsovx9";
+	// private String channel = "cerealkiller1918";
+
+	// For Testing
+	private String channel = "bossier";
+	private String userName = "bot1918";
+	private String address = "irc.freenode.net";
 
 	public IrcClient() {
 
 		try {
+			ping = new SoundClip("/coin pickup.wav");
+			ping.setVolume(-5.0f);
 			socket = new Socket(address, port);
 			writer = new PrintWriter(socket.getOutputStream(), true);
 			scanner = new Scanner(socket.getInputStream());
@@ -30,13 +40,14 @@ public class IrcClient {
 	}
 
 	private void startMessage() {
-		writer.println("PASS " + oAuth);
+		// writer.println("PASS " + oAuth);
 		writer.println("NICK " + userName);
 		writer.println("USER " + userName + " 8 * :" + userName);
 	}
 
 	private void sendIrcMessage(String message) {
 		writer.println(message);
+		System.out.println("<<< " + message);
 	}
 
 	private void joinChannel() {
@@ -52,6 +63,11 @@ public class IrcClient {
 		String message = "";
 		if (scanner.hasNext()) {
 			message = scanner.nextLine();
+			System.out.println(">>> " + message);
+		}
+		if (message.startsWith("PING")) {
+			String pingContects = message.split(" ", 2)[1];
+			sendIrcMessage("PONG " + pingContects);
 		}
 		return message;
 	}
@@ -80,7 +96,14 @@ public class IrcClient {
 	}
 
 	public boolean isConnected() {
-		return socket.isConnected();
+		boolean x = true;
+		if (!socket.isConnected()) {
+			x = false;
+		}
+		if (writer.checkError()) {
+			x = false;
+		}
+		return x;
 	}
 
 	public void closeConnection() {
@@ -105,6 +128,10 @@ public class IrcClient {
 		}
 		startMessage();
 		joinChannel();
+	}
+
+	public void getNames() {
+		sendIrcMessage("NAMES #" + channel);
 	}
 
 }

@@ -5,21 +5,20 @@ import com.justin.twitch.irc.IrcClient;
 
 public class Chat_Thread implements Runnable {
 
-	private IrcClient irc;
-	private ChatCommand chatCommand;
+	private IrcClient irc = new IrcClient();
+	private ChatCommand chatCommand = new ChatCommand();
 
 	public Chat_Thread() {
-		irc = new IrcClient();
-		chatCommand = new ChatCommand();
+
 	}
 
 	@Override
 	public void run() {
-
 		while (true) {
 			if (!irc.isConnected()) {
 				irc.closeConnection();
 				irc.restartConnection();
+				System.out.println("We have a problem");
 			}
 			String defaltMessage = irc.readMessage();
 			String chatMessage = irc.readChat(defaltMessage);
@@ -27,12 +26,11 @@ public class Chat_Thread implements Runnable {
 			if (irc.getUserNameFromChat(defaltMessage) != null) {
 				user = irc.getUserNameFromChat(defaltMessage);
 			}
-			chatCommand.command(chatMessage, user);
+			chatCommand.command(chatMessage, user, irc);
 			if (chatMessage.compareTo("hello") == 0) {
 				irc.sendChatMessage("hey " + user);
 			}
 		}
-
 	}
 
 }
