@@ -5,12 +5,14 @@ import java.net.Socket;
 import java.util.Scanner;
 
 import com.justin.fx.SoundClip;
+import com.justin.window.Window;
 
 public class IrcClient {
 	private SoundClip ping;
 	private Socket socket;
 	private PrintWriter writer;
 	private Scanner scanner;
+	private Window window;
 
 	private int port = 6667;
 	// private String address = "irc.chat.twitch.tv";
@@ -23,8 +25,8 @@ public class IrcClient {
 	private String userName = "bot1918";
 	private String address = "irc.freenode.net";
 
-	public IrcClient() {
-
+	public IrcClient(Window window) {
+		this.window =window;
 		try {
 			ping = new SoundClip("/coin pickup.wav");
 			ping.setVolume(-5.0f);
@@ -118,13 +120,22 @@ public class IrcClient {
 	}
 
 	public void restartConnection() {
-
+		try {
+			scanner.close();
+			writer.flush();
+			writer.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
 		try {
 			socket = new Socket(address, port);
 			writer = new PrintWriter(socket.getOutputStream(), true);
 			scanner = new Scanner(socket.getInputStream());
 		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
 		startMessage();
 		joinChannel();

@@ -15,6 +15,10 @@ public class ChatCommand {
 		if(message.compareTo("!names")==0){
 			irc.getNames();
 		}
+		if(message.compareTo("!restart")==0){
+			irc.closeConnection();
+			irc.restartConnection();
+		}
 		
 		
 		

@@ -2,14 +2,17 @@ package com.justin.thread;
 
 import com.justin.twitch.irc.ChatCommand;
 import com.justin.twitch.irc.IrcClient;
+import com.justin.window.Window;
 
 public class Chat_Thread implements Runnable {
 
-	private IrcClient irc = new IrcClient();
-	private ChatCommand chatCommand = new ChatCommand();
-
-	public Chat_Thread() {
-
+	private IrcClient irc;
+	private ChatCommand chatCommand;
+	private Window window;
+	public Chat_Thread(Window window) {
+		this.window = window;
+		irc = new IrcClient(window);
+		chatCommand = new ChatCommand();
 	}
 
 	@Override
