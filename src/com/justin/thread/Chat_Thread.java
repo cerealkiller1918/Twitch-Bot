@@ -8,7 +8,6 @@ public class Chat_Thread implements Runnable {
 
 	private IrcClient irc;
 	private ChatCommand chatCommand;
-	private Window window;
 	public Chat_Thread(Window window) {
 		irc = new IrcClient(window);
 		chatCommand = new ChatCommand();

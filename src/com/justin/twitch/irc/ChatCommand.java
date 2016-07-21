@@ -1,6 +1,5 @@
 package com.justin.twitch.irc;
 
-import com.justin.filling.TwitchData;
 import com.justin.fx.SoundClip;
 
 public class ChatCommand {
@@ -20,7 +19,7 @@ public class ChatCommand {
 			irc.restartConnection();
 		}
 		if (message.compareTo("!file")==0){
-			new TwitchData().getLoginData();
+			
 		}
 
 	}

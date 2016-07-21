@@ -9,5 +9,17 @@
 	<classpathentry kind="lib" path="res/gson-2.7.jar"/>
 	<classpathentry kind="lib" path="res/json-simple-1.1.1.jar"/>
 	<classpathentry kind="lib" path="res"/>
+	<classpathentry kind="lib" path="res/sqlite-jdbc-3.9.1.jar"/>
+	<classpathentry kind="lib" path="res/mysql-connector-java-5.1.39-bin.jar"/>
+	<classpathentry kind="lib" path="res/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="res/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="res/engine.io-client-0.7.0.jar"/>
+	<classpathentry kind="lib" path="res/guava-18.0.jar"/>
+	<classpathentry kind="lib" path="res/java_websocket.jar"/>
+	<classpathentry kind="lib" path="res/joda-time-2.4.jar"/>
+	<classpathentry kind="lib" path="res/okio-1.6.0.jar"/>
+	<classpathentry kind="lib" path="res/rhino-1.7.7.jar"/>
+	<classpathentry kind="lib" path="res/socket.io-client.0.7.0.jar"/>
+	<classpathentry kind="lib" path="res/twitter4j-core-4.0.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
