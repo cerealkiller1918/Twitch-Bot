@@ -33,8 +33,8 @@ public class SoundClip {
 			
 			clip = AudioSystem.getClip();
 			clip.open(dais);
-			
-			gainControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+			if(clip.isControlSupported(FloatControl.Type.MASTER_GAIN))
+				gainControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -2,13 +2,13 @@ package com.justin.twitch.irc;
 
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.justin.fx.SoundClip;
+import com.justin.filling.TwitchData;
 import com.justin.window.Window;
 
 public class IrcClient {
-	private SoundClip ping;
 	private Socket socket;
 	private PrintWriter writer;
 	private Scanner scanner;
@@ -16,22 +16,25 @@ public class IrcClient {
 
 	private int port = 6667;
 	private String address = "irc.chat.twitch.tv";
-	private String userName = "k_m_g_bot";
-	private String oAuth = "oauth:bzuchfpauv15sjl0sy172xokrsovx9";
-	private String channel = "cerealkiller1918";
+	private String userName;
+	private String oAuth;
+	private String channel;
 
 	// For Testing
 	/*
-	 * private String channel = "bossier"; private String userName = "bot1918";
+	 * private String channel = "bossier";
+	 *  private String userName = "bot1918";
 	 * private String address = "irc.freenode.net";
 	 * 
 	 */
 
 	public IrcClient(Window window) {
 		this.window = window;
+		ArrayList<String> list = TwitchData.getLoginData();
+		userName = list.get(0);
+		oAuth = list.get(1);
+		channel = list.get(2);
 		try {
-			ping = new SoundClip("/coin pickup.wav");
-			ping.setVolume(-5.0f);
 			socket = new Socket(address, port);
 			writer = new PrintWriter(socket.getOutputStream(), true);
 			scanner = new Scanner(socket.getInputStream());
@@ -39,15 +42,16 @@ public class IrcClient {
 			e.printStackTrace();
 		}
 		startMessage();
-		joinChannel();
+		joinChannel(channel);
+		setMembership();
 
 	}
 
 	private void startMessage() {
 
 		writer.println("PASS " + oAuth);
-		writer.println("NICK " + userName);
-		writer.println("USER " + userName + " 8 * :" + userName);
+		sendIrcMessage("NICK " + userName);
+		sendIrcMessage("USER " + userName + " 8 * :" + userName);
 
 	}
 
@@ -60,7 +64,7 @@ public class IrcClient {
 		}
 	}
 
-	private void joinChannel() {
+	public void joinChannel(String channel) {
 		sendIrcMessage("JOIN #" + channel);
 	}
 
@@ -147,7 +151,11 @@ public class IrcClient {
 			return;
 		}
 		startMessage();
-		joinChannel();
+		joinChannel(this.channel);
+	}
+
+	public void setMembership() {
+		sendIrcMessage("CAP REQ :twitch.tv/membership");
 	}
 
 	public void getNames() {

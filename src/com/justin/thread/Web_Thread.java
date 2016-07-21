@@ -11,8 +11,9 @@ public class Web_Thread implements Runnable {
 	private SoundClip clip = new SoundClip("/r2d2.wav");
 
 	public Web_Thread(Window windows) {
-		
+
 		this.window = windows;
+		clip.setVolume(-30.0f);
 	}
 
 	@Override
