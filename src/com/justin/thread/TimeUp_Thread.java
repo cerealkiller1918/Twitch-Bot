@@ -10,13 +10,13 @@ import java.text.SimpleDateFormat;
 /**
  * Created by justin on 07/22/16.
  */
-public class Timeup_Thread implements Runnable{
+public class TimeUp_Thread implements Runnable{
 
     private MainClock mainClock;
     private Clock timeUp;
     private boolean clockRunning;
 
-    public Timeup_Thread(){
+    public TimeUp_Thread(){
         clockRunning = true;
         mainClock = new MainClock();
         timeUp = new Clock("Timeup");
@@ -25,6 +25,9 @@ public class Timeup_Thread implements Runnable{
 
     @Override
     public void run(){
+
+        mainClock.startStreamTime();
+
         while (clockRunning){
             timeUp.setTime(mainClock.getStreamTime());
         }
