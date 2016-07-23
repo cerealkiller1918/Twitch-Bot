@@ -17,10 +17,13 @@ public class Clock_Thread implements Runnable{
     public Clock_Thread(){
         mainClock = new MainClock();
         clock = new Clock("Clock");
+
     }
 
     @Override
     public void run(){
+
+
         while(true){
             clock.setTime(mainClock.getTime());
         }

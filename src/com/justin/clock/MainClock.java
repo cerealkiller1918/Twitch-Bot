@@ -1,7 +1,5 @@
 package com.justin.clock;
 
-import com.justin.main.Main;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,9 +26,13 @@ public class MainClock {
 
     public String getStreamTime(){
         long now = new Date().getTime();
-        long timeup = (now - startTime)+detla;
+        long timeUp = (now - startTime)+detla;
         Date date = new Date();
-        date.setTime(timeup);
+        date.setTime(timeUp);
         return dateFormat.format(date);
+    }
+
+    public void startStreamTime(){
+        startTime = new Date().getTime();
     }
 }

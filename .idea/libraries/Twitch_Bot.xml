@@ -1,0 +1,23 @@
+<component name="libraryTable">
+  <library name="Twitch Bot">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/engine.io-client-0.7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/commons-lang3-3.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/twitter4j-core-4.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/gson-2.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/okhttp-3.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/guava-18.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/java_websocket.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/commons-io-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/json-simple-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/rhino-1.7.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/mysql-connector-java-5.1.39-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/okio-1.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/socket.io-client.0.7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/sqlite-jdbc-3.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Twitch Bot/joda-time-2.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

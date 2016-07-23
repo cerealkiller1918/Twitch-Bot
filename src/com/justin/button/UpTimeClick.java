@@ -18,7 +18,7 @@ public class UpTimeClick implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!window.isTimeUpRunning() && !window.getThreadStatus()){
+        if (!window.getThreadStatus()){
 
             window.startUptime();
         }else{
