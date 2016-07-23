@@ -64,7 +64,7 @@ public class IrcClient {
 		}
 	}
 
-	public void joinChannel(String channel) {
+	private void joinChannel(String channel) {
 		sendIrcMessage("JOIN #" + channel);
 	}
 
@@ -102,8 +102,7 @@ public class IrcClient {
 		}
 		if (name.toString().charAt(0) == ':') {
 			name.deleteCharAt(0);
-			String sender = name.toString();
-			return sender;
+			return name.toString();
 		} else {
 			return null;
 		}
@@ -154,7 +153,7 @@ public class IrcClient {
 		joinChannel(this.channel);
 	}
 
-	public void setMembership() {
+	private void setMembership() {
 		sendIrcMessage("CAP REQ :twitch.tv/membership");
 	}
 

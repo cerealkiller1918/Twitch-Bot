@@ -1,9 +1,10 @@
 package com.justin.window;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import com.justin.button.UpTimeClick;
+import com.justin.thread.Clock_Thread;
+import com.justin.thread.Timeup_Thread;
+
+import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 
 public class Window {
@@ -13,10 +14,20 @@ public class Window {
 	private JScrollPane pane;
 	private JPanel topPanel;
 	private DefaultCaret caret;
+	private JButton startClockBtn;
+	private Thread uptimeThread;
+	private Timeup_Thread timeup_thread;
+	private boolean timeUpRunning;
 
 	private int WIDTH = 400, HEIGTH = 600;
 
 	public Window() {
+		timeUpRunning = false;
+		timeup_thread = new Timeup_Thread();
+		uptimeThread = new Thread(timeup_thread);
+		startClockBtn = new JButton();
+		startClockBtn.addActionListener(new UpTimeClick(this));
+		startClockBtn.setText("Click Me");
 		frame = new JFrame();
 		frame.setTitle("Twitch Chat");
 		frame.setSize(WIDTH, HEIGTH);
@@ -24,6 +35,7 @@ public class Window {
 		frame.setLocationRelativeTo(null);
 		setupTopPanel();
 		frame.add(topPanel);
+		frame.add(startClockBtn);
 		frame.setVisible(true);
 
 	}
@@ -50,4 +62,23 @@ public class Window {
 	public void ChatLogSetText(String log) {
 		textArea.setText(log);
 	}
+
+
+	public void startUptime(){
+		timeUpRunning = true;
+		timeup_thread.setClockRunning(timeUpRunning);
+		try {
+			uptimeThread.start();
+		}catch (Exception e) {
+			uptimeThread = new Thread(timeup_thread);
+			uptimeThread.start();
+		}
+	}
+	public void stopUptime(){
+		timeUpRunning = false;
+		timeup_thread.setClockRunning(timeUpRunning);
+	}
+
+	public boolean isTimeUpRunning(){ return  timeUpRunning; }
+	public boolean getThreadStatus(){ return uptimeThread.isAlive();}
 }

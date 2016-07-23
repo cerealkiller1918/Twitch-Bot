@@ -2,13 +2,19 @@ package com.justin.thread;
 
 import com.justin.fx.SoundClip;
 import com.justin.twitch.web.api.TwitchChatAPI;
+import com.justin.window.Clock;
 import com.justin.window.Window;
+import sun.java2d.pipe.SpanShapeRenderer;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Web_Thread implements Runnable {
 
 	private Window window;
 	private int sleepTime = 30000;
 	private SoundClip clip = new SoundClip("/r2d2.wav");
+
 
 	public Web_Thread(Window windows) {
 
@@ -18,7 +24,6 @@ public class Web_Thread implements Runnable {
 
 	@Override
 	public void run() {
-		// System.out.println("Run Has been called");
 		TwitchChatAPI twitchChat = new TwitchChatAPI();
 		int last = 0, now = 0;
 		while (true) {
@@ -28,6 +33,7 @@ public class Web_Thread implements Runnable {
 				if (clip.isRunning())
 					break;
 				clip.play();
+
 			}
 			if (list != null) {
 				window.ChatLogSetText("");
