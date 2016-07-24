@@ -1,4 +1,4 @@
-package com.justin.button;
+package com.justin.actionListener;
 
 import com.justin.window.Window;
 
@@ -6,13 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by justin on 07/22/16.
+ * Created by Justin Frasier on 07/22/16.
  */
-public class UpTimeClick implements ActionListener {
+public class UpTimeClickActionListener implements ActionListener {
 
     private Window window;
 
-    public UpTimeClick(Window window) {
+    public UpTimeClickActionListener(Window window) {
         this.window = window;
     }
 

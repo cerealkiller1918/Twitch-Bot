@@ -2,7 +2,6 @@ package com.justin.twitch.irc;
 
 import com.justin.filling.TwitchData;
 import com.justin.window.Window;
-
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -80,8 +79,8 @@ public class IrcClient {
             System.out.println(">>> " + message);
         }
         if (message.startsWith("PING")) {
-            String pingContects = message.split(" ", 2)[1];
-            sendIrcMessage("PONG " + pingContects);
+            String pingContents = message.split(" ", 2)[1];
+            sendIrcMessage("PONG " + pingContents);
         }
         return message;
     }

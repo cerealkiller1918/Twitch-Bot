@@ -1,6 +1,6 @@
 package com.justin.window;
 
-import com.justin.button.UpTimeClick;
+import com.justin.actionListener.UpTimeClickActionListener;
 import com.justin.thread.TimeUp_Thread;
 
 import javax.swing.*;
@@ -16,6 +16,7 @@ public class Window {
     private JPanel bottomPanel;
     private DefaultCaret caret;
     private JButton startClockBtn;
+    private JButton LoadClocksBTN;
     private Thread uptimeThread;
     private TimeUp_Thread timeUp_thread;
     private boolean timeUpRunning;
@@ -33,7 +34,7 @@ public class Window {
         frame.setLocationRelativeTo(null);
         frame.setLayout(new FlowLayout());
         setupTopPanel();
-        setupBottonPanel();
+        setupBottomPanel();
         frame.add(topPanel);
         frame.add(bottomPanel);
         frame.setVisible(true);
@@ -54,10 +55,10 @@ public class Window {
         topPanel.add(pane);
     }
 
-    public void setupBottonPanel() {
+    public void setupBottomPanel() {
         bottomPanel = new JPanel();
         startClockBtn = new JButton();
-        startClockBtn.addActionListener(new UpTimeClick(this));
+        startClockBtn.addActionListener(new UpTimeClickActionListener(this));
         startClockBtn.setText("Start Up Time");
         bottomPanel.add(startClockBtn);
     }

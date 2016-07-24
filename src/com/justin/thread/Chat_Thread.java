@@ -22,16 +22,13 @@ public class Chat_Thread implements Runnable {
                 irc.restartConnection();
                 System.out.println("We have a problem");
             }
-            String defaltMessage = irc.readMessage();
-            String chatMessage = irc.readChat(defaltMessage);
+            String defaultMessage = irc.readMessage();
+            String chatMessage = irc.readChat(defaultMessage);
             String user = "";
-            if (irc.getUserNameFromChat(defaltMessage) != null) {
-                user = irc.getUserNameFromChat(defaltMessage);
+            if (irc.getUserNameFromChat(defaultMessage) != null) {
+                user = irc.getUserNameFromChat(defaultMessage);
             }
             chatCommand.command(chatMessage, user, irc);
-            if (chatMessage.compareTo("hello") == 0) {
-                irc.sendChatMessage("hey " + user);
-            }
         }
     }
 
