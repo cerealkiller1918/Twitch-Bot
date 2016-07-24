@@ -12,7 +12,7 @@ public class Clock {
     private JPanel panel;
     private JLabel timeLable;
 
-    public Clock(String title){
+    public Clock(String title) {
         frame = new JFrame();
         frame.setContentPane(panel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -23,10 +23,13 @@ public class Clock {
 
     }
 
-    public void setTime (String time){
+    public void setTime(String time) {
         timeLable.setText(time);
     }
-    public void setVisible(boolean visible){ this.visible = visible;}
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
 
 
 }

@@ -12,16 +12,16 @@ public class UpTimeClick implements ActionListener {
 
     private Window window;
 
-    public UpTimeClick(Window window){
+    public UpTimeClick(Window window) {
         this.window = window;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!window.getThreadStatus()){
+        if (!window.getThreadStatus()) {
 
             window.startUptime();
-        }else{
+        } else {
             System.out.println("Thread Status : " + window.getThreadStatus());
             window.stopUptime();
         }
