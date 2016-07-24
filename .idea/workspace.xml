@@ -1,43 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="405fb32b-fde9-4119-bcaa-f2161a93d5b5" name="Default" comment="Added database keep on working on it">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/res.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/res1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/justin/test/Test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/database/DataBase.class" afterPath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/database/DataBase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/fx/SoundClip.class" afterPath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/fx/SoundClip.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/thread/Chat_Thread.class" afterPath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/thread/Chat_Thread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/thread/Clock_Thread.class" afterPath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/thread/Clock_Thread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/thread/TimeUp_Thread.class" afterPath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/thread/TimeUp_Thread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/thread/Web_Thread.class" afterPath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/thread/Web_Thread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/twitch/web/api/TwitchChatAPI.class" afterPath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/twitch/web/api/TwitchChatAPI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/twitch/web/api/TwitchFollowsAPI.class" afterPath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/twitch/web/api/TwitchFollowsAPI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/twitch/web/api/TwitchStreamAPI.class" afterPath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/twitch/web/api/TwitchStreamAPI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/webInterface/WebInterface.class" afterPath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/webInterface/WebInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/window/Clock.class" afterPath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/window/Clock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/window/Window.class" afterPath="$PROJECT_DIR$/out/production/TwitchBot/com/justin/window/Window.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TwitchBot.iml" afterPath="$PROJECT_DIR$/TwitchBot.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/button/UpTimeClick.java" afterPath="$PROJECT_DIR$/src/com/justin/button/UpTimeClick.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/clock/MainClock.java" afterPath="$PROJECT_DIR$/src/com/justin/clock/MainClock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/database/DataBase.java" afterPath="$PROJECT_DIR$/src/com/justin/database/DataBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/fx/SoundClip.java" afterPath="$PROJECT_DIR$/src/com/justin/fx/SoundClip.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/main/Main.java" afterPath="$PROJECT_DIR$/src/com/justin/main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/thread/Chat_Thread.java" afterPath="$PROJECT_DIR$/src/com/justin/thread/Chat_Thread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/thread/Clock_Thread.java" afterPath="$PROJECT_DIR$/src/com/justin/thread/Clock_Thread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/thread/TimeUp_Thread.java" afterPath="$PROJECT_DIR$/src/com/justin/thread/TimeUp_Thread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/thread/Web_Thread.java" afterPath="$PROJECT_DIR$/src/com/justin/thread/Web_Thread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/twitch/irc/ChatCommand.java" afterPath="$PROJECT_DIR$/src/com/justin/twitch/irc/ChatCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/twitch/irc/IrcClient.java" afterPath="$PROJECT_DIR$/src/com/justin/twitch/irc/IrcClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/twitch/web/api/TwitchChatAPI.java" afterPath="$PROJECT_DIR$/src/com/justin/twitch/web/api/TwitchChatAPI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/twitch/web/api/TwitchFollowsAPI.java" afterPath="$PROJECT_DIR$/src/com/justin/twitch/web/api/TwitchFollowsAPI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/twitch/web/api/TwitchStreamAPI.java" afterPath="$PROJECT_DIR$/src/com/justin/twitch/web/api/TwitchStreamAPI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/webInterface/WebInterface.java" afterPath="$PROJECT_DIR$/src/com/justin/webInterface/WebInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/window/Clock.java" afterPath="$PROJECT_DIR$/src/com/justin/window/Clock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/justin/window/Window.java" afterPath="$PROJECT_DIR$/src/com/justin/window/Window.java" />
-    </list>
+    <list default="true" id="405fb32b-fde9-4119-bcaa-f2161a93d5b5" name="Default" comment="Added database keep on working on it" />
     <ignored path="TwitchBot.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -61,8 +25,8 @@
       <file leaf-file-name="DataBase.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/justin/database/DataBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="67" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
+            <state relative-caret-position="442">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <marker date="1469375001453" expanded="true" signature="377:404" ph="drop table i... " />
                 <marker date="1469375001453" expanded="true" signature="445:490" ph="create table... person" />
@@ -765,12 +729,12 @@
       <option name="presentableId" value="Default" />
       <updated>1469333012206</updated>
       <workItem from="1469333032880" duration="302000" />
-      <workItem from="1469335294104" duration="5130000" />
+      <workItem from="1469335294104" duration="5255000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5432000" />
+    <option name="totallyTimeSpent" value="5557000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1030,8 +994,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/justin/database/DataBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="67" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
+        <state relative-caret-position="442">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
             <marker date="1469375001453" expanded="true" signature="377:404" ph="drop table i... " />
             <marker date="1469375001453" expanded="true" signature="445:490" ph="create table... person" />
