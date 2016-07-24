@@ -2,4 +2,3 @@
 *.db
 /.idea/*
 /out/*
-*.iml
