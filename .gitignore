@@ -1,2 +1,4 @@
-*.class
-bin/*
+*.txt
+*.db
+.idea/
+out/
