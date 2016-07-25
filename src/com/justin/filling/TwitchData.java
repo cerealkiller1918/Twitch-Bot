@@ -1,5 +1,7 @@
 package com.justin.filling;
 
+import com.justin.stackTrace.StackTrace;
+
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -48,7 +50,7 @@ public class TwitchData {
 
                 return strings;
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                StackTrace.message(e.getMessage());
                 return null;
             }
         }

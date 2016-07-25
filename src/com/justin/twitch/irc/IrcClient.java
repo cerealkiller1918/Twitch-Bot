@@ -1,6 +1,7 @@
 package com.justin.twitch.irc;
 
 import com.justin.filling.TwitchData;
+import com.justin.stackTrace.StackTrace;
 import com.justin.window.Window;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -38,7 +39,7 @@ public class IrcClient {
             writer = new PrintWriter(socket.getOutputStream(), true);
             scanner = new Scanner(socket.getInputStream());
         } catch (Exception e) {
-            e.printStackTrace();
+            StackTrace.message(e.toString());
         }
         startMessage();
         joinChannel(channel);
@@ -59,7 +60,7 @@ public class IrcClient {
             writer.println(message);
             System.out.println("<<< " + message);
         } catch (Exception e) {
-            e.printStackTrace();
+            StackTrace.message(e.getMessage());
         }
     }
 
@@ -126,7 +127,7 @@ public class IrcClient {
             writer.close();
             socket.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            StackTrace.message(e.getMessage());
         }
     }
 
@@ -137,7 +138,7 @@ public class IrcClient {
             writer.close();
             socket.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            StackTrace.message(e.getMessage());
             return;
         }
         try {
@@ -145,7 +146,7 @@ public class IrcClient {
             writer = new PrintWriter(socket.getOutputStream(), true);
             scanner = new Scanner(socket.getInputStream());
         } catch (Exception e) {
-            e.printStackTrace();
+           StackTrace.message(e.getMessage());
             return;
         }
         startMessage();
