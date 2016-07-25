@@ -17,7 +17,6 @@ public class Clock_Thread implements Runnable {
 
     }
 
-    @Override
     public void run() {
 
 

@@ -47,7 +47,7 @@ public class TwitchStreamAPI {
             JSONParser parser = new JSONParser();
             JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
             JSONObject streamObject = (JSONObject) jsonObject.get("stream");
-            return (long) streamObject.get("video_height");
+            return (Long) streamObject.get("video_height");
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -61,7 +61,7 @@ public class TwitchStreamAPI {
             JSONParser parser = new JSONParser();
             JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
             JSONObject streamObject = (JSONObject) jsonObject.get("stream");
-            return (long) streamObject.get("delay");
+            return (Long) streamObject.get("delay");
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -75,7 +75,7 @@ public class TwitchStreamAPI {
             JSONParser parser = new JSONParser();
             JSONObject jsonObject = (JSONObject) parser.parse(web.getHTTP(testUrl));
             JSONObject streamObject = (JSONObject) jsonObject.get("stream");
-            return (long) streamObject.get("viewers");
+            return (Long) streamObject.get("viewers");
         } catch (Exception e) {
             e.printStackTrace();
             return -1;

@@ -17,7 +17,7 @@ public class Web_Thread implements Runnable {
         clip.setVolume(-30.0f);
     }
 
-    @Override
+
     public void run() {
         TwitchChatAPI twitchChat = new TwitchChatAPI();
         int last = 0, now = 0;

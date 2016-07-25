@@ -3,6 +3,8 @@ package com.justin.twitch.irc;
 import com.justin.filling.TwitchData;
 import com.justin.stackTrace.StackTrace;
 import com.justin.window.Window;
+
+import javax.swing.*;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -29,21 +31,31 @@ public class IrcClient {
 	 */
 
     public IrcClient(Window window) {
-        this.window = window;
-        ArrayList<String> list = TwitchData.getLoginData();
-        userName = list.get(0);
-        oAuth = list.get(1);
-        channel = list.get(2);
         try {
+            this.window = window;
+            ArrayList<String> list;
+            list = TwitchData.getLoginData();
+            for (int i =0; i<list.size(); i++){
+                if(list.get(i).contains("null")){
+                    JOptionPane.showMessageDialog(null,"There was a NULL","Error",JOptionPane.ERROR_MESSAGE);
+                    TwitchData.deleteFile();
+                    return;
+                }
+            }
+            userName = list.get(0).toLowerCase();
+            oAuth = list.get(1);
+            channel = list.get(2).toLowerCase();
+
             socket = new Socket(address, port);
             writer = new PrintWriter(socket.getOutputStream(), true);
             scanner = new Scanner(socket.getInputStream());
+            startMessage();
+            joinChannel(channel);
+            setMembership();
         } catch (Exception e) {
-            StackTrace.message(e.toString());
+            StackTrace.message(e);
         }
-        startMessage();
-        joinChannel(channel);
-        setMembership();
+
 
     }
 
@@ -60,7 +72,7 @@ public class IrcClient {
             writer.println(message);
             System.out.println("<<< " + message);
         } catch (Exception e) {
-            StackTrace.message(e.getMessage());
+            StackTrace.message(e);
         }
     }
 
@@ -74,50 +86,69 @@ public class IrcClient {
     }
 
     public String readMessage() {
-        String message = "";
-        if (scanner.hasNext()) {
-            message = scanner.nextLine();
-            System.out.println(">>> " + message);
+        try {
+            String message = "";
+            if (scanner.hasNext()) {
+                message = scanner.nextLine();
+                System.out.println(">>> " + message);
+            }
+            if (message.startsWith("PING")) {
+                String pingContents = message.split(" ", 2)[1];
+                sendIrcMessage("PONG " + pingContents);
+            }
+            return message;
+        }catch (Exception e){
+            StackTrace.message(e);
+            return null;
         }
-        if (message.startsWith("PING")) {
-            String pingContents = message.split(" ", 2)[1];
-            sendIrcMessage("PONG " + pingContents);
-        }
-        return message;
     }
 
     public String readChat(String message) {
-        String[] temp = message.split(" :");
-        if (temp.length == 2) {
-            return temp[1].trim();
+        try {
+            String[] temp = message.split(" :");
+            if (temp.length == 2) {
+                return temp[1].trim();
+            }
+            return "";
+        }catch(Exception e){
+            StackTrace.message(e);
+            return null;
         }
-        return "";
     }
 
     public String getUserNameFromChat(String message) {
-        String[] temp = message.split("!");
-        StringBuilder name = new StringBuilder(temp[0]);
-        if (name.length() == 0) {
-            return null;
-        }
-        if (name.toString().charAt(0) == ':') {
-            name.deleteCharAt(0);
-            return name.toString();
-        } else {
-            return null;
-        }
+       try {
+           String[] temp = message.split("!");
+           StringBuilder name = new StringBuilder(temp[0]);
+           if (name.length() == 0) {
+               return null;
+           }
+           if (name.toString().charAt(0) == ':') {
+               name.deleteCharAt(0);
+               return name.toString();
+           } else {
+               return null;
+           }
+       }catch(Exception e){
+           StackTrace.message(e);
+           return null;
+       }
     }
 
     public boolean isConnected() {
         boolean x = true;
-        if (!socket.isConnected()) {
-            x = false;
+        try {
+            if (!socket.isConnected()) {
+                x = false;
+            }
+            if (writer.checkError()) {
+                x = false;
+            }
+            return x;
+        }catch(Exception e){
+            StackTrace.message(e);
+            return false;
         }
-        if (writer.checkError()) {
-            x = false;
-        }
-        return x;
-
     }
 
     public void closeConnection() {
@@ -127,7 +158,7 @@ public class IrcClient {
             writer.close();
             socket.close();
         } catch (Exception e) {
-            StackTrace.message(e.getMessage());
+            StackTrace.message(e);
         }
     }
 
@@ -138,7 +169,7 @@ public class IrcClient {
             writer.close();
             socket.close();
         } catch (Exception e) {
-            StackTrace.message(e.getMessage());
+            StackTrace.message(e);
             return;
         }
         try {
@@ -146,7 +177,7 @@ public class IrcClient {
             writer = new PrintWriter(socket.getOutputStream(), true);
             scanner = new Scanner(socket.getInputStream());
         } catch (Exception e) {
-           StackTrace.message(e.getMessage());
+           StackTrace.message(e);
             return;
         }
         startMessage();

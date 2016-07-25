@@ -19,7 +19,6 @@ public class TimeUp_Thread implements Runnable {
 
     }
 
-    @Override
     public void run() {
 
         mainClock.startStreamTime();

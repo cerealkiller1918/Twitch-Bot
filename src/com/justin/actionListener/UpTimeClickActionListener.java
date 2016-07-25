@@ -16,7 +16,7 @@ public class UpTimeClickActionListener implements ActionListener {
         this.window = window;
     }
 
-    @Override
+
     public void actionPerformed(ActionEvent e) {
         if (!window.getThreadStatus()) {
 

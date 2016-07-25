@@ -1,7 +1,6 @@
 package com.justin.stackTrace;
 
-import java.io.File;
-import java.io.PrintWriter;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,21 +16,18 @@ public class StackTrace {
          dateFormat = new SimpleDateFormat("MM-dd-yy");
      }
 
-     public static void message(String e){
+     public static void message(Exception e){
          try{
-             String fileName = "Stack"
-                     fileName =  new SimpleDateFormat("MM-dd-yyyy").format(new Date());
-
+             String fileName;
+             fileName = new StringBuilder().append("StackTrace ").append(new SimpleDateFormat("MM-dd-yyyy-HH-mm").format(new Date())).append(".txt").toString();
              if(new File(fileName).exists()){
-                 File file = new File(fileName);
-                 PrintWriter writer = new PrintWriter(file);
-                 writer.append(e);
+                 PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
+                 e.printStackTrace(writer);
                  writer.flush();
                  writer.close();
              }else{
-                 File file = new File(fileName);
-                 PrintWriter writer = new PrintWriter(file);
-                 writer.print(e);
+                 PrintWriter writer = new PrintWriter(new BufferedWriter( new FileWriter(fileName)));
+                 e.printStackTrace(writer);
                  writer.flush();
                  writer.close();
              }

@@ -11,15 +11,16 @@ import java.util.Scanner;
 
 public class TwitchData {
 
+    private static String fileName = "TwitchLogin.txt";
     public TwitchData() {
         // TODO Auto-generated constructor stub
     }
 
-    @SuppressWarnings("resource")
+
     public static ArrayList<String> getLoginData() {
-        String fileName = "TwitchLogin.txt";
+
         if (new File(fileName).exists()) {
-            ArrayList<String> strings = new ArrayList<>();
+            ArrayList<String> strings = new ArrayList<String>();
             File file = new File(fileName);
             Scanner scanner = null;
             try {
@@ -43,17 +44,22 @@ public class TwitchData {
                 writer.println("Channel :" + channel);
                 writer.flush();
                 writer.close();
-                ArrayList<String> strings = new ArrayList<>();
+                ArrayList<String> strings = new ArrayList<String>();
                 strings.add(userName);
                 strings.add(oAuth);
                 strings.add(channel);
 
                 return strings;
             } catch (FileNotFoundException e) {
-                StackTrace.message(e.getMessage());
+                StackTrace.message(e);
                 return null;
             }
         }
+    }
+
+    public static void deleteFile(){
+        File file = new File(fileName);
+        file.delete();
     }
 
 }
