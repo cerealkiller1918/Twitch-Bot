@@ -1,6 +1,6 @@
 package com.justin.twitch.irc;
 
-import com.justin.filling.TwitchData;
+import com.justin.twitch.data.TwitchData;
 import com.justin.stackTrace.StackTrace;
 import com.justin.window.Window;
 
@@ -16,42 +16,46 @@ public class IrcClient {
     private Scanner scanner;
     private Window window;
 
-    private int port = 6667;
-    private String address = "irc.chat.twitch.tv";
+    private int port;
+    private String address;
     private String userName;
     private String oAuth;
     private String channel;
 
-    // For Testing
-    /*
-	 * private String channel = "bossier";
-	 *  private String userName = "bot1918";
-	 * private String address = "irc.freenode.net";
-	 * 
-	 */
+    //For Testing
+    private boolean testing = false;
 
-    public IrcClient(Window window) {
+    public IrcClient(Window window, boolean testing) {
         try {
+            this.testing = testing;
             this.window = window;
             ArrayList<String> list;
-            list = TwitchData.getLoginData();
-            for (int i =0; i<list.size(); i++){
-                if(list.get(i).contains("null")){
-                    JOptionPane.showMessageDialog(null,"There was a NULL","Error",JOptionPane.ERROR_MESSAGE);
+            for (String s : list = TwitchData.getLoginData()) {
+                if (s.contains("null")) {
+                    JOptionPane.showMessageDialog(null, "There was a NULL", "Error", JOptionPane.ERROR_MESSAGE);
                     TwitchData.deleteFile();
                     return;
                 }
             }
-            userName = list.get(0).toLowerCase();
-            oAuth = list.get(1);
-            channel = list.get(2).toLowerCase();
-
+            if(!testing) {
+                port = 6667;
+                address =  "irc.chat.twitch.tv";
+                userName = list.get(0).toLowerCase();
+                oAuth = list.get(1);
+                channel = list.get(2).toLowerCase();
+            }else{
+                port = 6667;
+                channel = "bossier";
+                userName = "bot1918";
+                address = "irc.freenode.net";
+            }
             socket = new Socket(address, port);
             writer = new PrintWriter(socket.getOutputStream(), true);
             scanner = new Scanner(socket.getInputStream());
             startMessage();
             joinChannel(channel);
-            setMembership();
+            if(!testing)
+                setMembership();
         } catch (Exception e) {
             StackTrace.message(e);
         }
@@ -60,8 +64,9 @@ public class IrcClient {
     }
 
     private void startMessage() {
-
-        writer.println("PASS " + oAuth);
+        if(!testing) {
+            writer.println("PASS " + oAuth);
+        }
         sendIrcMessage("NICK " + userName);
         sendIrcMessage("USER " + userName + " 8 * :" + userName);
 
@@ -80,7 +85,7 @@ public class IrcClient {
         sendIrcMessage("JOIN #" + channel);
     }
 
-    public void sendChatMessage(String message) {
+    void sendChatMessage(String message) {
         sendIrcMessage(":" + userName + "!" + userName + "@" + userName + ".tmi.twitch.tv PRIVMSG #" + channel + " :"
                 + message);
     }
@@ -188,8 +193,5 @@ public class IrcClient {
         sendIrcMessage("CAP REQ :twitch.tv/membership");
     }
 
-    public void getNames() {
-        sendIrcMessage("NAMES");
-    }
 
 }

@@ -1,5 +1,7 @@
 package com.justin.database;
 
+import com.justin.stackTrace.StackTrace;
+
 import java.sql.*;
 
 
@@ -30,7 +32,7 @@ public class DataBase {
 
         } catch (SQLException e) {
 
-            System.err.println(e.getMessage());
+            StackTrace.message(e);
 
         } finally {
             cleanup();
@@ -42,8 +44,8 @@ public class DataBase {
             if (connection != null)
                 connection.close();
         } catch (SQLException e) {
-            // connection close failed.
-            System.err.println(e);
+            StackTrace.message(e);
+
         }
     }
 
@@ -55,7 +57,7 @@ public class DataBase {
             }
 
         }catch(Exception e){
-            e.printStackTrace();
+            StackTrace.message(e);
         }
     }
 
@@ -63,7 +65,7 @@ public class DataBase {
         try {
             statement.executeUpdate("INSERT INTO "+ table +" VALUES ("+index+", '"+name+"');");
         } catch (SQLException e) {
-            e.printStackTrace();
+            StackTrace.message(e);
         }
     }
 

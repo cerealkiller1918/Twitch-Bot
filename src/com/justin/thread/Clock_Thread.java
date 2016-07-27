@@ -4,7 +4,7 @@ import com.justin.clock.MainClock;
 import com.justin.window.Clock;
 
 /**
- * Created by Justin on 07/22/16.
+ * Created by Justin Frasier on 07/22/16.
  */
 public class Clock_Thread implements Runnable {
 

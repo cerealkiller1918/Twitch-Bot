@@ -10,12 +10,12 @@ public class ChatCommand {
     public void command(String message, String user, IrcClient irc) {
         try {
 
-            if (message.compareTo("hello") == 0) {
+            if (message.contains("hello")) {
                 irc.sendChatMessage("hey " + user);
             } else if (message.compareTo("!test") == 0) {
                 clip.play();
             } else if (message.compareTo("!names") == 0) {
-                irc.getNames();
+
             } else if (message.compareTo("!restart") == 0) {
                 irc.closeConnection();
                 irc.restartConnection();

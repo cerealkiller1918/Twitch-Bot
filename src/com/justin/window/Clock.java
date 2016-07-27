@@ -3,14 +3,13 @@ package com.justin.window;
 import javax.swing.*;
 
 /**
- * Created by Justin on 07/22/16.
+ * Created by Justin Frasier on 07/22/16.
  */
 public class Clock {
 
-    private boolean visible = false;
     private JFrame frame;
     private JPanel panel;
-    private JLabel timeLable;
+    private JLabel timeLabel;
 
     public Clock(String title) {
         frame = new JFrame();
@@ -23,13 +22,7 @@ public class Clock {
 
     }
 
-    public void setTime(String time) {
-        timeLable.setText(time);
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
+    public void setTime(String time) { timeLabel.setText(time); }
 
 
 }

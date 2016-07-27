@@ -11,8 +11,8 @@ public class Chat_Thread implements Runnable {
     private IrcClient irc;
     private ChatCommand chatCommand;
 
-    public Chat_Thread(Window window) {
-        irc = new IrcClient(window);
+    public Chat_Thread(Window window, boolean testing) {
+        irc = new IrcClient(window,testing);
         chatCommand = new ChatCommand();
     }
 

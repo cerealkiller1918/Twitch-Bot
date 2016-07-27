@@ -8,18 +8,16 @@ import com.justin.window.Window;
 public class Main {
 
     public static void main(String[] args) {
-
+        boolean testing = true;
 
         Window window = new Window();
-        Thread chatThread = new Thread(new Chat_Thread(window));
+        Thread chatThread = new Thread(new Chat_Thread(window,testing));
         chatThread.setName("Chat");
         Thread webThread = new Thread(new Web_Thread(window));
         webThread.setName("Web");
-        Thread clockThread = new Thread(new Clock_Thread());
-        clockThread.setName("Clock");
         chatThread.start();
         webThread.start();
-        clockThread.start();
+
 
     }
 

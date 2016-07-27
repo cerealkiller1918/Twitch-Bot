@@ -11,7 +11,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="1429b" class="javax.swing.JLabel" binding="timeLable">
+      <component id="1429b" class="javax.swing.JLabel" binding="timeLabel">
         <constraints/>
         <properties>
           <alignmentY value="0.0"/>

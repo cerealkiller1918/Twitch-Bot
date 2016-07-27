@@ -2,3 +2,4 @@
 *.db
 .idea/
 out/
+/Video/*.mp4
