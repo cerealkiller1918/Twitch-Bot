@@ -1,5 +1,6 @@
 package com.justin.twitch.irc;
 
+import com.justin.logger.Logger;
 import com.justin.twitch.data.TwitchData;
 import com.justin.stackTrace.StackTrace;
 import com.justin.window.Window;
@@ -75,7 +76,7 @@ public class IrcClient {
     private void sendIrcMessage(String message) {
         try {
             writer.println(message);
-            System.out.println("<<< " + message);
+            Logger.console(" <<< "+message);
         } catch (Exception e) {
             StackTrace.message(e);
         }
@@ -95,7 +96,7 @@ public class IrcClient {
             String message = "";
             if (scanner.hasNext()) {
                 message = scanner.nextLine();
-                System.out.println(">>> " + message);
+                Logger.console(" >>> "+ message);
             }
             if (message.startsWith("PING")) {
                 String pingContents = message.split(" ", 2)[1];

@@ -30,12 +30,12 @@ public class Logger {
             String fileName = "Logger " + dateFormat.format(new Date()) + ".txt";
             if (new File(fileName).exists()) {
                 PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
-                writer.write(message+'\n');
+                writer.println(message);
                 writer.flush();
                 writer.close();
             }else{
                 PrintWriter writer = new PrintWriter(new BufferedWriter((new FileWriter(fileName))));
-                writer.write(message+"\n");
+                writer.println(message);
                 writer.flush();
                 writer.close();
             }
