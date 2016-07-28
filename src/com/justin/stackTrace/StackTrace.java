@@ -29,6 +29,7 @@ public class StackTrace {
                  writer.close();
              }else{
                  PrintWriter writer = new PrintWriter(new BufferedWriter( new FileWriter(fileName)));
+                 writer.println(new SimpleDateFormat("HH:mm:ss").format(new Date()));
                  e.printStackTrace(writer);
                  e.printStackTrace();
                  writer.flush();
