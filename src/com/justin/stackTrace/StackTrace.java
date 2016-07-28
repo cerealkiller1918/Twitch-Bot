@@ -10,10 +10,10 @@ import java.util.Date;
  */
 public class StackTrace {
 
-    private static DateFormat dateFormat;
+
 
      public StackTrace(){
-         dateFormat = new SimpleDateFormat("MM-dd-yy");
+
      }
 
      public static void message(Exception e){
@@ -22,12 +22,15 @@ public class StackTrace {
              fileName = new StringBuilder().append("StackTrace ").append(new SimpleDateFormat("MM-dd-yyyy-HH-mm").format(new Date())).append(".txt").toString();
              if(new File(fileName).exists()){
                  PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
+                 writer.println(new SimpleDateFormat("HH:mm:ss").format(new Date()));
                  e.printStackTrace(writer);
+                 e.printStackTrace();
                  writer.flush();
                  writer.close();
              }else{
                  PrintWriter writer = new PrintWriter(new BufferedWriter( new FileWriter(fileName)));
                  e.printStackTrace(writer);
+                 e.printStackTrace();
                  writer.flush();
                  writer.close();
              }

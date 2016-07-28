@@ -2,44 +2,41 @@ package com.justin.database;
 
 import com.justin.stackTrace.StackTrace;
 
+import java.io.File;
 import java.sql.*;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.Date;
 
 
 public class DataBase {
 
-    private Connection connection =null;
-    private String dbName = "jdbc:sqlite:TwitchBot.db";
-    private int queryTimeout = 30;
-    private Statement statement;
+    private static Connection connection =null;
+    private static String dbName = "jdbc:sqlite:TwitchBot.db";
+    private static int queryTimeout = 30;
+    private static Statement statement;
 
     public DataBase() {
 
 
         try {
             // Connection to the database or makes the database if one does not exist
-
-            connection = DriverManager.getConnection(dbName);
-            statement = connection.createStatement();
-            statement.setQueryTimeout(queryTimeout);
-
-            statement.executeUpdate("drop table if exists person");
-            statement.executeUpdate("create table person (id integer, name string)");
-            insert("person",1,"Justin");
-            insert("person",2,"Bob");
-
-            getQuery("person", 2);
-
-        } catch (SQLException e) {
+            if(!new File("TwitchBot.db").exists()) {
+                connection = DriverManager.getConnection(dbName);
+                statement = connection.createStatement();
+                statement.setQueryTimeout(queryTimeout);
+                statement.executeUpdate("create table logger ('date' DATE ,'time' DATE,'name' CHAR ,'message' CHAR );");
+                cleanup();
+            }
+        } catch (Exception e) {
 
             StackTrace.message(e);
 
-        } finally {
-            cleanup();
         }
     }
 
-    public void cleanup(){
+    public static void cleanup(){
         try {
             if (connection != null)
                 connection.close();
@@ -49,7 +46,7 @@ public class DataBase {
         }
     }
 
-    public void getQuery(String table, int columnIndex){
+    public static void getQuery(String table, int columnIndex){
         try {
             ResultSet rs = statement.executeQuery("select * from " + table);
             while(rs.next()){
@@ -61,9 +58,15 @@ public class DataBase {
         }
     }
 
-    public void insert(String table, int index , String name){
+
+    public static void insert(String table, String user, String message){
         try {
-            statement.executeUpdate("INSERT INTO "+ table +" VALUES ("+index+", '"+name+"');");
+            DateFormat format = new SimpleDateFormat("MM-dd-yyyy");
+            connection = DriverManager.getConnection(dbName);
+            statement = connection.createStatement();
+            statement.setQueryTimeout(queryTimeout);
+            statement.executeUpdate("INSERT INTO "+ table +" VALUES ('"+format.format(new Date())+"','"+new SimpleDateFormat("HH:mm:ss").format(new Date())+"','"+user+"','"+message+"');");
+            cleanup();
         } catch (SQLException e) {
             StackTrace.message(e);
         }

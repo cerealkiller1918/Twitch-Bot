@@ -1,5 +1,6 @@
 package com.justin.logger;
 
+import com.justin.database.DataBase;
 import com.justin.stackTrace.StackTrace;
 
 import java.io.BufferedWriter;
@@ -26,16 +27,18 @@ public class Logger {
 
     private static void logFile(String message){
         try {
+            DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
             DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
             String fileName = "Logger " + dateFormat.format(new Date()) + ".txt";
             if (new File(fileName).exists()) {
                 PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
-                writer.println(message);
+                writer.println(timeFormat.format(new Date())+" : "+message);
+                DataBase.insert("logger",null,message);
                 writer.flush();
                 writer.close();
             }else{
                 PrintWriter writer = new PrintWriter(new BufferedWriter((new FileWriter(fileName))));
-                writer.println(message);
+                writer.println(timeFormat.format(new Date())+" : "+message);
                 writer.flush();
                 writer.close();
             }

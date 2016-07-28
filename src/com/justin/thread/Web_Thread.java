@@ -1,6 +1,7 @@
 package com.justin.thread;
 
 import com.justin.fx.SoundClip;
+import com.justin.stackTrace.StackTrace;
 import com.justin.twitch.web.api.TwitchChatAPI;
 import com.justin.window.Window;
 
@@ -22,26 +23,24 @@ public class Web_Thread implements Runnable {
         TwitchChatAPI twitchChat = new TwitchChatAPI();
         int last = 0, now = 0;
         while (true) {
-            String[] list = twitchChat.getAllChatters();
-            now = list.length;
-            if (now > last) {
-                if (clip.isRunning())
-                    break;
-                clip.play();
-
-            }
-            if (list != null) {
-                window.ChatLogSetText("");
-                for (int i = 0; i < list.length; i++) {
-                    window.updateChatLog(list[i] + '\n');
+          try{
+                String[] list = twitchChat.getAllChatters();
+                now = list.length;
+                if (now > last) {
+                    if (clip.isRunning())
+                        break;
+                    clip.play();
                 }
-
-            }
-            last = now;
-            try {
+                if (list != null) {
+                    window.ChatLogSetText("");
+                    for (int i = 0; i < list.length; i++) {
+                        window.updateChatLog(list[i] + '\n');
+                    }
+                }
+                last = now;
                 Thread.sleep(sleepTime);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                StackTrace.message(e);
             }
         }
 
