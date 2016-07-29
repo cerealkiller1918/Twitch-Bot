@@ -16,13 +16,13 @@ import java.util.Date;
  */
 public class Logger {
 
-    public static void console(String message){
-        logFile(message);
-        System.out.println(message);
+    public static void console(String user,String message){
+        logFile(user+":"+message);
+        System.out.println(user+":"+message);
     }
 
-    public static void log(String message){
-        logFile(message);
+    public static void log(String user, String message){
+        logFile(user+":"+message);
     }
 
     private static void logFile(String message){

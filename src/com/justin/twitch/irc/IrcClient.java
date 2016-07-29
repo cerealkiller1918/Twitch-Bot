@@ -22,6 +22,8 @@ public class IrcClient {
     private String userName;
     private String oAuth;
     private String channel;
+    private String senderUserName;
+    private String senderMessage;
 
     //For Testing
     private boolean testing = false;
@@ -76,7 +78,7 @@ public class IrcClient {
     private void sendIrcMessage(String message) {
         try {
             writer.println(message);
-            Logger.console(" <<< "+message);
+            Logger.console(getUserNameFromChat(message),readChat(message));
         } catch (Exception e) {
             StackTrace.message(e);
         }
@@ -96,7 +98,7 @@ public class IrcClient {
             String message = "";
             if (scanner.hasNext()) {
                 message = scanner.nextLine();
-                Logger.console(" >>> "+ message);
+                Logger.console(getUserNameFromChat(message), readChat(message));
             }
             if (message.startsWith("PING")) {
                 String pingContents = message.split(" ", 2)[1];

@@ -10,21 +10,18 @@ import com.justin.webInterface.WebInterface;
  */
 public class Weather {
 
-    private String key = "1299ede563bb4be7";
-    private String city;
+    private static String key = "1299ede563bb4be7";
 
-    public String getForcast(String city, String state){
+
+    public static String getForecast(String city, String state){
         try {
             StringBuilder builder = new StringBuilder();
             if(city.contains(" ")){
                 builder.append(city);
                 builder.replace(builder.indexOf(" "),builder.indexOf(" ")+1,"_");
-                this.city = builder.toString();
-
-            }else{
-                this.city = city;
+                city = builder.toString();
             }
-            String url = "http://api.wunderground.com/api/" + key + "/conditions/q/" + state + "/" + this.city + ".json";
+            String url = "http://api.wunderground.com/api/" + key + "/conditions/q/" + state + "/" + city + ".json";
             String output;
             StringBuilder
                     location = new StringBuilder(),
@@ -81,7 +78,7 @@ public class Weather {
         }
     }
 
-    private StringBuilder trim (StringBuilder builder){
+    private static StringBuilder trim (StringBuilder builder){
         try {
             for (int i = 0; i < 2; i++) {
                 builder.deleteCharAt(builder.indexOf("\""));
