@@ -21,13 +21,15 @@ public class Weather {
                 builder.replace(builder.indexOf(" "),builder.indexOf(" ")+1,"_");
                 this.city = builder.toString();
 
+            }else{
+                this.city = city;
             }
             String url = "http://api.wunderground.com/api/" + key + "/conditions/q/" + state + "/" + this.city + ".json";
             String output;
             StringBuilder
                     location = new StringBuilder(),
                     weather = new StringBuilder(),
-                    temperatur_string = new StringBuilder(),
+                    temperature_string = new StringBuilder(),
                     wind_string = new StringBuilder(),
                     observation_time = new StringBuilder(),
                     visibility_mi = new StringBuilder(),
@@ -44,8 +46,8 @@ public class Weather {
             location = trim(location);
             weather.append(current_observation.get("weather").toString());
             weather = trim(weather);
-            temperatur_string.append(current_observation.get("temperature_string").toString());
-            temperatur_string = trim(temperatur_string);
+            temperature_string.append(current_observation.get("temperature_string").toString());
+            temperature_string = trim(temperature_string);
             wind_string.append(current_observation.get("wind_string").toString());
             wind_string = trim(wind_string);
             observation_time.append(current_observation.get("observation_time").toString());
@@ -58,13 +60,19 @@ public class Weather {
             precip_1hr_string = trim(precip_1hr_string);
             precip_today_string.append(current_observation.get("precip_today_string").toString());
             precip_today_string = trim(precip_today_string);
-            // String heat_index_string = current_observation.get("heat_index_string").toString();
             forecast_url.append(current_observation.get("forecast_url").toString());
             forecast_url = trim(forecast_url);
 
-            output = location.toString() + '\n' + weather.toString() + " " + temperatur_string.toString() + " " + feelslike_string.toString() + '\n' + wind_string.toString() + '\n' + visibility_mi.toString()
-                    + '\n' + precip_1hr_string.toString() + '\n' + precip_today_string.toString() + '\n' + forecast_url.toString();
-
+            output = "Location: "+location.toString()
+                    + "\n" + observation_time.toString()
+                    + "\nWeather: " + weather.toString()
+                    + "\nTemperature: " + temperature_string.toString()
+                    + "\nFeels Like: " + feelslike_string.toString()
+                    + "\nWind Speed: " + wind_string.toString()
+                    + "\nVisibility: " + visibility_mi.toString()
+                    + "\nPrecipitation in 1 hour: " + precip_1hr_string.toString()
+                    + "\nPrecipitation for the day: " + precip_today_string.toString()
+                    + '\n' + forecast_url.toString();
 
             return output;
         }catch(Exception e){
@@ -74,10 +82,15 @@ public class Weather {
     }
 
     private StringBuilder trim (StringBuilder builder){
-        for(int i = 0; i<2; i++) {
-            builder.deleteCharAt(builder.indexOf("\""));
+        try {
+            for (int i = 0; i < 2; i++) {
+                builder.deleteCharAt(builder.indexOf("\""));
+            }
+            return builder;
+        }catch (Exception e){
+            StackTrace.message(e);
+            return new StringBuilder("null");
         }
-        return builder;
     }
 
 }

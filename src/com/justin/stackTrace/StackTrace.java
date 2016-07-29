@@ -22,6 +22,7 @@ public class StackTrace {
              fileName = new StringBuilder().append("StackTrace ").append(new SimpleDateFormat("MM-dd-yyyy-HH-mm").format(new Date())).append(".txt").toString();
              if(new File(fileName).exists()){
                  PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
+                 writer.println();
                  writer.println(new SimpleDateFormat("HH:mm:ss").format(new Date()));
                  e.printStackTrace(writer);
                  e.printStackTrace();

@@ -18,7 +18,7 @@ public class Test {
 
     public static void main(String[] args) {
         Weather weather = new Weather();
-        System.out.println(weather.getForcast("Bossier City","LA"));
+        System.out.println(weather.getForcast("Shreveport","LA"));
 
     }
 }
