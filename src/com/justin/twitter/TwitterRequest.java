@@ -25,7 +25,7 @@ public class TwitterRequest {
             getLoginInfo();
             List <Status> statuses = twitter().getHomeTimeline();
             for(Status st : statuses){
-                Logger.console(" " + st.getUser().getName() + " >>> " + st.getText());
+               // Logger.console(" " + st.getUser().getName() + " >>> " + st.getText());
             }
         } catch (TwitterException e) {
            StackTrace.message(e);
@@ -36,7 +36,7 @@ public class TwitterRequest {
         try {
             List<Status> status = twitter().getUserTimeline();
             for (Status st : status){
-                Logger.console(" "+st.getUser().getName()+" >>>> "+ st.getText());
+               // Logger.console(" "+st.getUser().getName()+" >>>> "+ st.getText());
             }
 
         }catch(Exception e){

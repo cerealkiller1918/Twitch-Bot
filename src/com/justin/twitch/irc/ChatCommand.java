@@ -19,16 +19,20 @@ public class ChatCommand {
                 irc.closeConnection();
                 irc.restartConnection();
             }  else if (message.contains("!weather")){
-                String[] temp = message.trim().split(" ");
-                if(temp.length<=2){
-                    irc.sendChatMessage("!weather (city) (state abbreviation)");
+                message = message.trim().split(" ")[1];
+                String[] temp = message.trim().split(",");
+                if(temp.length<2){
+                    irc.sendChatMessage("!weather (city),(state abbreviation)");
                     return;
                 }
-                if(temp[2].length()>2){
-                    irc.sendChatMessage("!weather (city) (state abbreviation)");
+                if(temp[1].length()>2){
+                    irc.sendChatMessage("!weather (city),(state abbreviation)");
                     return;
                 }
-                irc.sendChatMessage(Weather.getForecast(temp[1].trim(),temp[2].trim()));
+                String[] output = Weather.getForecast(temp[0].trim(),temp[1].trim());
+                for (int i = 0; i < output.length; i++){
+                    irc.sendChatMessage(output[i]);
+                }
             }
 
         }catch(Exception e){

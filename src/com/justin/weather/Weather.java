@@ -13,7 +13,7 @@ public class Weather {
     private static String key = "1299ede563bb4be7";
 
 
-    public static String getForecast(String city, String state){
+    public static String[] getForecast(String city, String state){
         try {
             StringBuilder builder = new StringBuilder();
             if(city.contains(" ")){
@@ -22,7 +22,6 @@ public class Weather {
                 city = builder.toString();
             }
             String url = "http://api.wunderground.com/api/" + key + "/conditions/q/" + state + "/" + city + ".json";
-            String output;
             StringBuilder
                     location = new StringBuilder(),
                     weather = new StringBuilder(),
@@ -30,9 +29,9 @@ public class Weather {
                     wind_string = new StringBuilder(),
                     observation_time = new StringBuilder(),
                     visibility_mi = new StringBuilder(),
-                    feelslike_string = new StringBuilder(),
-                    precip_1hr_string = new StringBuilder(),
-                    precip_today_string = new StringBuilder(),
+                    feelsLike_string = new StringBuilder(),
+                    precipitation_1hr_string = new StringBuilder(),
+                    precipitation_today_string = new StringBuilder(),
                     forecast_url = new StringBuilder();
             WebInterface web = new WebInterface();
             JsonParser parser = new JsonParser();
@@ -51,30 +50,31 @@ public class Weather {
             observation_time = trim(observation_time);
             visibility_mi.append(current_observation.get("visibility_mi").toString());
             visibility_mi = trim(visibility_mi);
-            feelslike_string.append(current_observation.get("feelslike_string").toString());
-            feelslike_string = trim(feelslike_string);
-            precip_1hr_string.append(current_observation.get("precip_1hr_string").toString());
-            precip_1hr_string = trim(precip_1hr_string);
-            precip_today_string.append(current_observation.get("precip_today_string").toString());
-            precip_today_string = trim(precip_today_string);
+            feelsLike_string.append(current_observation.get("feelslike_string").toString());
+            feelsLike_string = trim(feelsLike_string);
+            precipitation_1hr_string.append(current_observation.get("precip_1hr_string").toString());
+            precipitation_1hr_string = trim(precipitation_1hr_string);
+            precipitation_today_string.append(current_observation.get("precip_today_string").toString());
+            precipitation_today_string = trim(precipitation_today_string);
             forecast_url.append(current_observation.get("forecast_url").toString());
             forecast_url = trim(forecast_url);
 
-            output = "Location: "+location.toString()
-                    + "\n" + observation_time.toString()
-                    + "\nWeather: " + weather.toString()
-                    + "\nTemperature: " + temperature_string.toString()
-                    + "\nFeels Like: " + feelslike_string.toString()
-                    + "\nWind Speed: " + wind_string.toString()
-                    + "\nVisibility: " + visibility_mi.toString()
-                    + "\nPrecipitation in 1 hour: " + precip_1hr_string.toString()
-                    + "\nPrecipitation for the day: " + precip_today_string.toString()
-                    + '\n' + forecast_url.toString();
+            String[] output ={"Location: "+location.toString(),
+                    observation_time.toString(),
+                    "Weather: " + weather.toString(),
+                    "Temperature: " + temperature_string.toString(),
+                    "Feels Like: " + feelsLike_string.toString(),
+                    "Wind Speed: " + wind_string.toString(),
+                    "Visibility: " + visibility_mi.toString(),
+                    "Precipitation in 1 hour: " + precipitation_1hr_string.toString(),
+                    "Precipitation for the day: " + precipitation_today_string.toString(),
+                     forecast_url.toString()};
 
             return output;
         }catch(Exception e){
             StackTrace.message(e);
-            return "Error recheck City and State spelling";
+            String[] output = {"Error recheck City and State spelling"};
+            return output;
         }
     }
 

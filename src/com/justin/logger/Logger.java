@@ -20,9 +20,16 @@ public class Logger {
         logFile(user+":"+message);
         System.out.println(user+":"+message);
     }
-
+    public static void console(String message,int num){
+        logFile(message);
+        System.out.println(message);
+    }
     public static void log(String user, String message){
         logFile(user+":"+message);
+    }
+
+    public static void log(String message){
+        logFile(message);
     }
 
     private static void logFile(String message){
@@ -33,7 +40,6 @@ public class Logger {
             if (new File(fileName).exists()) {
                 PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
                 writer.println(timeFormat.format(new Date())+" : "+message);
-                DataBase.insert("logger",null,message);
                 writer.flush();
                 writer.close();
             }else{
